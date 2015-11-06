@@ -22,6 +22,8 @@ class ParameterWidget(QtGui.QWidget):
         self.main_box = QtGui.QHBoxLayout()
 
         sld = QtGui.QSlider(QtCore.Qt.Horizontal, self)
+        sld.setFocusPolicy(QtCore.Qt.NoFocus)
+        sld.setGeometry(30, 40, 100, 30)
         sld.valueChanged[int].connect(self.changeValue)
 
         label = QtGui.QLabel(self)
@@ -35,20 +37,18 @@ class ParameterWidget(QtGui.QWidget):
         self.main_box.addStretch(1)
         self.main_box.addWidget(spinbox)
         self.main_box.addStretch(1)
+        self.setLayout(self.main_box)
 
     def changeValue(self, value):
         print value
 
-class Example(QtGui.QMainWindow):
+class MainApp(QtGui.QMainWindow):
     def __init__(self):
-        super(Example, self).__init__()
+        super(MainApp, self).__init__()
         self.initUI()
 
     def initUI(self):
         self.main_frame = QtGui.QWidget()
-
-        okButton = QtGui.QPushButton("OK")
-        cancelButton = QtGui.QPushButton("Cancel")
 
         main_box = QtGui.QHBoxLayout()
         left_box = QtGui.QVBoxLayout()
@@ -57,9 +57,6 @@ class Example(QtGui.QMainWindow):
         main_box.addLayout(left_box)
         main_box.addStretch(1)
         main_box.addLayout(right_box)
-        left_box.addWidget(okButton)
-        left_box.addWidget(cancelButton)
-
 
         fig = Figure(figsize=(600,600), dpi=72, facecolor=(1,1,1), edgecolor=(0,0,0))
         ax = fig.add_subplot(111)
@@ -83,11 +80,28 @@ class Example(QtGui.QMainWindow):
 
         self.setGeometry(300, 300, 1200, 600)
         self.setWindowTitle('Buttons')
+
+        exitAction = QtGui.QAction(QtGui.QIcon('exit.png'), '&Exit', self)
+        exitAction.setShortcut('Ctrl+Q')
+        exitAction.setStatusTip('Exit application')
+        exitAction.triggered.connect(self.close)
+
+        self.statusBar()
+
+        menubar = self.menuBar()
+
+        fileMenu  = menubar.addMenu('&File')
+        fileMenu.addAction(exitAction)
+
+        modelMenu = menubar.addMenu('&Model')
+        modelMenu.addAction(exitAction)
+
+        self.statusBar().showMessage('Ready')
         self.show()
 
 def main():
     app = QtGui.QApplication(sys.argv)
-    ex = Example()
+    main_window = MainApp()
     sys.exit(app.exec_())
 
 
