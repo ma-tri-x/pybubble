@@ -1,7 +1,8 @@
 import abc
 
+
 class abcModels(object):
-    __metaclass__ = abc.ABCMeta
+    __metaclass__=abc.ABCMeta
     
     @abc.abstractmethod
     def foo(self):
@@ -11,23 +12,22 @@ class abcModels(object):
     def bar(self):
         return
     
-class bla(object):
+class bla(abcModels):
     def __init__(self):
         return
     
-    def blup(self):
+    def bar(self):
         print 'bla'
     
-    def blabla(self):
+    def foo(self):
         pass
     
-abcModels.register(bla)
 
 def main():
     print 'Subclass:', issubclass(bla, abcModels)
     print 'Instance:', isinstance(bla(), abcModels)
     c = bla
-    c.blup
+    c.bar()
     
 if __name__ == '__main__':
     main()
