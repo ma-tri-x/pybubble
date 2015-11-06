@@ -2,7 +2,7 @@
 #import unittest
 import matplotlib.pyplot as plt
 
-import BubbleModels as bm
+import pybubble.models as bm
 
 def test_Gilmore_ode():
     bm.Gilmore_ode(500e-6, 0, 50e-6, 0, 100, 0.1)
@@ -24,7 +24,7 @@ def test_GilmoreEick_ode():
     plt.plot(T, '.-')
     plt.ylabel('$T$ [K]')
     plt.show()
-    
+
 if __name__ == '__main__':
 #    test_Gilmore_ode()
     test_GilmoreEick_ode()
