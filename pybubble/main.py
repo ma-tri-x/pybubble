@@ -12,35 +12,7 @@ from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT as Navigatio
 from matplotlib.figure import Figure
 
 from PySide import QtCore, QtGui
-
-class ParameterWidget(QtGui.QWidget):
-    def __init__(self, name, value):
-        super(ParameterWidget, self).__init__()
-        self.initUI(name, value)
-
-    def initUI(self, name, value):
-        self.main_box = QtGui.QHBoxLayout()
-
-        sld = QtGui.QSlider(QtCore.Qt.Horizontal, self)
-        sld.setFocusPolicy(QtCore.Qt.NoFocus)
-        sld.setGeometry(30, 40, 100, 30)
-        sld.valueChanged[int].connect(self.changeValue)
-
-        label = QtGui.QLabel(self)
-        label.setText(name)
-
-        spinbox = QtGui.QDoubleSpinBox(self)
-
-        self.main_box.addWidget(label)
-        self.main_box.addStretch(1)
-        self.main_box.addWidget(sld)
-        self.main_box.addStretch(1)
-        self.main_box.addWidget(spinbox)
-        self.main_box.addStretch(1)
-        self.setLayout(self.main_box)
-
-    def changeValue(self, value):
-        print value
+from parameter_widget import ParameterWidget
 
 class MainApp(QtGui.QMainWindow):
     def __init__(self):
@@ -87,7 +59,6 @@ class MainApp(QtGui.QMainWindow):
         exitAction.triggered.connect(self.close)
 
         self.statusBar()
-
         menubar = self.menuBar()
 
         fileMenu  = menubar.addMenu('&File')
