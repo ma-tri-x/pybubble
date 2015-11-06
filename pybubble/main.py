@@ -23,7 +23,7 @@ class ParameterWidget(QtGui.QWidget):
 
         sld = QtGui.QSlider(QtCore.Qt.Horizontal, self)
         sld.setFocusPolicy(QtCore.Qt.NoFocus)
-        sld.setGeometry(30, 40, 100, 30)
+        sld.setGeometry(30, 40, 1000, 30)
         sld.valueChanged[int].connect(self.changeValue)
 
         label = QtGui.QLabel(self)
