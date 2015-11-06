@@ -79,7 +79,7 @@ class MainApp(QtGui.QMainWindow):
         self.setCentralWidget(self.main_frame)
 
         self.setGeometry(300, 300, 1200, 600)
-        self.setWindowTitle('Buttons')
+        self.setWindowTitle('Bubble-O Magic ODE Solver')
 
         exitAction = QtGui.QAction(QtGui.QIcon('exit.png'), '&Exit', self)
         exitAction.setShortcut('Ctrl+Q')
